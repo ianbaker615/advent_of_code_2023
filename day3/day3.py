@@ -5,6 +5,7 @@ def day3(input_file_path: str) -> int:
         number_of_lines = len(lines)
         # Iterate through all lines of file
         for line_index, line in enumerate(lines):
+            line = line.rstrip("\n")
             prev_line = None
             next_line = None
             if line_index > 0:
@@ -73,6 +74,7 @@ def day3(input_file_path: str) -> int:
                                     break
                     # Add part number to total if part is valid
                     if valid_part is True:
+                        print(num)
                         total += int(num)
                 j += 1
     return total
@@ -85,4 +87,6 @@ def is_char_symbol(char: str) -> bool:
 test = day3("test_input.txt")
 print(f"Test result: {test}")
 assert test == 4361
-print(f"Real result: {day3('input.txt')}")
+result = day3("input.txt")
+print(f"Real result: {result}")
+assert result == 371924
