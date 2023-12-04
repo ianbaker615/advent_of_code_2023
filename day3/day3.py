@@ -34,15 +34,13 @@ def day3(input_file_path: str) -> int:
                         check_left = True if index - 1 >= 0 else False
                         check_right = True if index + 1 < line_length else False
                         # Check above
-                        if prev_line:
-                            if is_char_symbol(prev_line[index]):
-                                valid_part = True
-                                break
+                        if prev_line and is_char_symbol(prev_line[index]):
+                            valid_part = True
+                            break
                         # Check below
-                        if next_line:
-                            if is_char_symbol(next_line[index]):
-                                valid_part = True
-                                break
+                        if next_line and is_char_symbol(next_line[index]):
+                            valid_part = True
+                            break
                         # Check left for all: current line, above, below
                         if check_left:
                             # Check if value on current line is special character
@@ -50,31 +48,26 @@ def day3(input_file_path: str) -> int:
                                 valid_part = True
                                 break
                             # Ensure that prev_line exists before checking
-                            if prev_line:
-                                if is_char_symbol(prev_line[index - 1]):
-                                    valid_part = True
-                                    break
+                            if prev_line and is_char_symbol(prev_line[index - 1]):
+                                valid_part = True
+                                break
                             # Ensure that next_line exists before checking
-                            if next_line:
-                                if is_char_symbol(next_line[index - 1]):
-                                    valid_part = True
-                                    break
+                            if next_line and is_char_symbol(next_line[index - 1]):
+                                valid_part = True
+                                break
                         # Check right for all: current line, above, below
                         if check_right:
                             if is_char_symbol(line[index + 1]):
                                 valid_part = True
                                 break
-                            if prev_line:
-                                if is_char_symbol(prev_line[index + 1]):
-                                    valid_part = True
-                                    break
-                            if next_line:
-                                if is_char_symbol(next_line[index + 1]):
-                                    valid_part = True
-                                    break
+                            if prev_line and is_char_symbol(prev_line[index + 1]):
+                                valid_part = True
+                                break
+                            if next_line and is_char_symbol(next_line[index + 1]):
+                                valid_part = True
+                                break
                     # Add part number to total if part is valid
                     if valid_part is True:
-                        print(num)
                         total += int(num)
                 j += 1
     return total
